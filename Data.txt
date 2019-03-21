@@ -1,1 +1,5 @@
-100110011
+H
+ello 
+this
+is my 
+file.
