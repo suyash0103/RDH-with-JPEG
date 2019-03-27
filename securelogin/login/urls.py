@@ -9,5 +9,5 @@ urlpatterns = [
     url(r'^$', views.index, name='index'),
 
     # /login/encrypt
-    url(r'^encrypt/$', views.encrypt, name='encrypt')
+    url(r'^encrypt/$', views.ENC.as_view(), name='encrypt')
 ]

@@ -1,7 +1,7 @@
 
 # coding: utf-8
 
-# In[254]:
+# In[2]:
 
 
 import cv2
@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import scipy as sc
 
 
-# In[256]:
+# In[3]:
 
 
 from random import randint
@@ -133,7 +133,7 @@ class EllipticCurve():
         return result
 
 
-# In[257]:
+# In[4]:
 
 
 from random import randint
@@ -214,7 +214,7 @@ def ecckey(m):
 #     assert m == mp
 
 
-# In[258]:
+# In[5]:
 
 
 from Crypto import Random
@@ -244,7 +244,7 @@ class Encryptor:
         return iv + cipher.encrypt(message)
 
     def encrypt_file(self, file_name):
-        f = open("Data.txt", "r")
+        f = open("C:/3rd Year IT/6th sem/IAS/RDH-with-JPEG/securelogin/login/Data.txt", "r")
         string = f.read()
         print ("Data.txt file opened: ", string)
         with open(file_name, 'rb') as fo:
@@ -257,7 +257,7 @@ class Encryptor:
         with open(file_name + ".enc", 'wb') as fo:
             fo.write(enc)
 #         print ("CHECK1")
-        f = open("Data.txt.enc", errors = "ignore")
+        f = open("C:/3rd Year IT/6th sem/IAS/RDH-with-JPEG/securelogin/login/Data.txt.enc", errors = "ignore")
 #         print ("Hello")
 #         print ("CHECK2")
         string = f.read()
@@ -273,6 +273,7 @@ class Encryptor:
         print ("decrypt start...")
         plaintext = cipher.decrypt(ciphertext[AES.block_size:])
         print ("decrypt end")
+        print (plaintext.rstrip(b"\0"))
         return plaintext.rstrip(b"\0")
 #         return plaintext
 
@@ -286,11 +287,11 @@ class Encryptor:
 #         ciphertext = str.encode(ciphertext)
 #         print ("DEC")
         dec = self.decrypt(ciphertext, self.key)
-        
+        print (dec)
         dec = dec.decode("utf-8")
-        with open("Data2.txt", 'w') as fo:
+        with open("C:/3rd Year IT/6th sem/IAS/RDH-with-JPEG/securelogin/login/Data2.txt", 'w') as fo:
             fo.write(dec)
-        f = open("Data2.txt", "r")
+        f = open("C:/3rd Year IT/6th sem/IAS/RDH-with-JPEG/securelogin/login/Data2.txt", "r")
         string = f.read()
         print ("Data2.txt file opened: ", string)
 #         print ("DEC")
@@ -312,20 +313,20 @@ def aesencrypt():
     enc.encrypt_file("Data.txt")
     
 def aesdecrypt():
-    enc2.decrypt_file("Data2.txt.enc")
+    enc.decrypt_file("Data2.txt.enc")
 
 # enc.encrypt_file(str(input("Enter name of file to encrypt: ")))
 # enc.decrypt_file(str(input("Enter name of file to decrypt: ")))
 
 
-# In[259]:
+# In[6]:
 
 
 def convert(char):
     return format(ord(char), '016b')
 
 
-# In[260]:
+# In[7]:
 
 
 quantization_table = [[16, 11, 10, 16, 24, 40, 51, 61],
@@ -338,10 +339,10 @@ quantization_table = [[16, 11, 10, 16, 24, 40, 51, 61],
                 [72, 92, 95, 98, 112, 100, 103, 99]]
 
 
-# In[261]:
+# In[8]:
 
 
-def decrypt(image_dct, image):
+def decrypter(image_dct, image):
     data = ''
     image_data = image.astype(float)
     image_data_dct = image_dct.astype(float)
@@ -391,16 +392,16 @@ def decrypt(image_dct, image):
 #     print (type(to_return))
         
     print ("Data from image, write in Data2.txt.enc: ", to_return)
-    with open("Data2.txt.enc", 'w') as fo:
+    with open("C:/3rd Year IT/6th sem/IAS/RDH-with-JPEG/securelogin/login/Data2.txt.enc", 'w') as fo:
         fo.write(to_return)
-    f = open("Data2.txt.enc", "r")
+    f = open("C:/3rd Year IT/6th sem/IAS/RDH-with-JPEG/securelogin/login/Data2.txt.enc", "r")
     string = f.read()
     print ("Data2.txt.enc file opened: ", string)
     aesdecrypt()   
     
 
 
-# In[262]:
+# In[9]:
 
 
 def dct(image):
@@ -435,7 +436,7 @@ def dct(image):
     
 #     val = aesencrypt()
     aesencrypt()
-    f = open("Data.txt.enc", "r")
+    f = open("C:/3rd Year IT/6th sem/IAS/RDH-with-JPEG/securelogin/login/Data.txt.enc", "r")
 #     print ("Hello")
     string = f.read()
 #     print ("Hello")
@@ -574,16 +575,63 @@ def dct(image):
 
 
 
-# In[264]:
+# In[23]:
 
 
-image = cv2.imread('github.jpeg', 0)
+image = cv2.imread('C:/3rd Year IT/6th sem/IAS/RDH-with-JPEG/securelogin/login/github.jpeg', 0)
 
 # DCT
 image_dct = dct(image)
 # print (image)
 
-decrypt(image_dct, image)
+decrypter(image_dct, image)
+
+# plt.subplot(131)
+# plt.imshow(image, 'gray')
+# plt.title('original image')
+# plt.xticks([]), plt.yticks([])
+
+# plt.subplot(132)
+# plt.imshow(image_dct, 'gray')
+# plt.title('dct')
+# plt.xticks([]), plt.yticks([])
 
 
+# In[ ]:
+
+
+# 233
+# 243
+# 71
+# 83
+# 48
+# 207
+# 10
+# 124
+# 184
+# 2
+# 34
+# 205
+# 54
+# 255
+# 236
+# 105
+# 93
+# 76
+# 247
+# 72
+# 55
+# 171
+# 124
+# 382
+# 171
+# 172
+# 216
+# 108
+# 352
+# 4
+# 107
+# 231
+
+# print (chr(56000))
 
